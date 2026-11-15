@@ -116,17 +116,24 @@ class Tree:
 
     def findLarger(self, value):
         current = self.root
+        successor = None
         while current is not None:
             if value > current.value:
                 current = current.right
             elif value < current.value:
+                successor = current
                 current = current.left
             elif current.value == value and current.present is True:
-                return current.value
+                successor = current.value
+                return successor
+            else:
+                current = current.right
 
-        
+        if successor:
+            return successor.value
+        else:
+            return -1
 
-        return False
 
 
     def removeLarger(self, value):
